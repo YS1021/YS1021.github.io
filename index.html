@@ -36,10 +36,14 @@
 		<script>
     			function aaaaa(){
 				var bless=document.myform.bless.value;
-
 				var uid=document.myform.uid.value;
+				
 				document.getElementById("d1").style.display="";
-				document.getElementById("d1").innerHTML = "解雨臣：谢谢"+uid+"的祝福<3";
+				if (uid=="黑瞎子") {
+					document.getElementById("d1").innerHTML = "黑瞎子：谁在冒充我？嗯？"
+				} else {
+					document.getElementById("d1").innerHTML = "解雨臣：谢谢"+uid+"的祝福<3";
+				}
 			}
 			document.getElementById("but").onclick = aaaaa;
 		</script>
