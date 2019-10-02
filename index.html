@@ -35,12 +35,13 @@
 		</form>
 		<script>
     			function aaaaa(){
-				var name=document.myform.name.value;
+				var bless=document.myform.bless.value;
 
-				var uid=document.myform.age.value;
+				var uid=document.myform.uid.value;
 				document.getElementById("d1").style.display="";
 				document.getElementById("d2").style.display="none";
-				document.getElementById("d1").innerHTML=name+"<br>	-- By "+uid;
+				document.getElementById("d1").innerHTML = bless+"<br>	-- By "+uid;
+				document.write("Thank you!");
 			}
 			document.getElementById("but").onclick = aaaaa;
 		</script>
