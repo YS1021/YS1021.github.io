@@ -19,32 +19,30 @@
 		</marquee>
 		-->
 
-		<form>
+		<form name="myform">
 		<p style="font-family:微软雅黑;font-size:80%;color:black;text-align:left">
 		输入你的祝福:
 		<br>
-		<input style="background:transparent;border:1px solid #ffffff" name="bless">
+		<input type="text" style="background:transparent;border:1px solid #ffffff" name="bless">
 		<br>
 		留下你的名字:
 		<br>
-		<input style="background:transparent;border:1px solid #ffffff" name="id">
+		<input type="text" style="background:transparent;border:1px solid #ffffff" name="uid">
 		<br>
-		<input type="submit" name="提交" value="提交">
-		<input name="result" value=getElementsByName(bless)+getElementsByName(id)>
+		<input type="button" id="but" value="ok";>
 		</p>
-		<div id='aa' style=' width:; height:100px; display:none; border: 1px solid gray;'></div>
+		<div id="d1" class="b" style="display:none;">asdf</div>
 		</form>
 		<script>
-    			var a = document.getElementsByName('bless');
-    			var b = document.getElementById('aa');
-    			for (var i = 0; i < a.length; i++) {
-				a[i].onclick = function () {
+    			function aaaaa(){
+				var name=document.myform.name.value;
 
-			    		b.style.display = "block";
-			    		b.innerHTML = this.value;
-
-				}
-		    	}
+				var uid=document.myform.age.value;
+				document.getElementById("d1").style.display="";
+				document.getElementById("d2").style.display="none";
+				document.getElementById("d1").innerHTML=name+"<br>	-- By "+uid;
+			}
+			document.getElementById("but").onclick = aaaaa;
 		</script>
 
 
