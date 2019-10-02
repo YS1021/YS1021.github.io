@@ -19,7 +19,7 @@
 		</marquee>
 		-->
 
-		<form oninput=""result.value=bless.value+name.value>
+		<form>
 		<p style="font-family:微软雅黑;font-size:80%;color:black;text-align:left">
 		输入你的祝福:
 		<br>
@@ -29,10 +29,23 @@
 		<br>
 		<input style="background:transparent;border:1px solid #ffffff" name="id">
 		<br>
-		<!--input type="submit" name="提交" value="提交"-->
+		<input type="submit" name="提交" value="提交">
 		<input name="result" value=getElementsByName(bless)+getElementsByName(id)>
 		</p>
+		<div id='aa' style=' width:; height:100px; display:none; border: 1px solid gray;'></div>
 		</form>
+		<script>
+    			var a = document.getElementsByName('bless');
+    			var b = document.getElementById('aa');
+    			for (var i = 0; i < a.length; i++) {
+				a[i].onclick = function () {
+
+			    		b.style.display = "block";
+			    		b.innerHTML = this.value;
+
+				}
+		    	}
+		</script>
 
 
 
