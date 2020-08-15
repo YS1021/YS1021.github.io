@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+</style>
+<title>CS 184 Final Project</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+<body>
+
+<h1 align="middle">CS 184 Final Project: Font Editing</h1>
+<h2 align="middle">Team 16, Teammate: Yi Shi, SID: 3033184806</h2>
+
+<br><br>
+
+<div>
+  <h2 align="middle">Abstract</h2>
+  <p>
+    I use the library found online to load a TrueType font file (.ttf) and then write a Bezier curve rasterizer to display them.
+    <br>
+    The user can upload their own font and content to be typed. The result will be saved as a .png file in the same directory.
+    <br>
+  </p>
+  
+  <br>
+  <h2 align="middle">Technical Approach</h2>
+  <p>
+    Each glyph in the .ttf file is described by a sequence of points in order. Two on-curve points construct a staright line and the additional off-curve point between two on-curve points construct a parabolic curve as shown in the image below.
+    <br>
+    <img src="images/bezier.png" style="display:block;margin-left:auto;margin-right:auto;width:100%;" />
+    <figcaption align="middle">cr: https://developer.apple.com/fonts/TrueType-Reference-Manual/RM01/Chap1.html</figcaption>
+    <br>
+    These curves connected together forms the ouline of the glyph, which may contain one contour (e.g. character C) or several contours (e.g. character B).
+    <br>
+    In order to do the rasterization, a new algorithm is used to distinguish whether a pixel is inside or outside the outline of a glyph.
+    <br>
+    <img src="images/inout.png" style="display:block;margin-left:auto;margin-right:auto;width:70%;" />
+    <figcaption align="middle">cr: https://developer.apple.com/fonts/TrueType-Reference-Manual/RM02/Chap2.html</figcaption>
+    <br>
+    For each single pixel, choose one direction randomly and create a ray starting from this pixel. Start with a count of zero. If the ray intersects with a clockwise contour, add one; otherwise, subtract one.
+    If the final count number is not zero, this pixel is an interior point; otherwise, it is an exterior one.
+    <br>
+    The problem I encountered is to make an interface. I studied the source code provided in the project 2 and learned the complete logic of creating the <code>Viewer</code> but struggled to convert <code>c++</code> code to <code>c</code> because the library and skeleton code I found online is written in <code>c</code> language.
+    <br>
+    The lessons I learned from this project are new library exploration and time management. I spent lots of time on learning the TrueType font engine and <code>stb</code> library, which caused there was limited time left when I noticed I had to convert the interface code from <code>.cpp</code> to <code>.c</code>. Although the result of this project is not as satisfied as I expected, I learned a lot from it and I will continue with the interface in the next several weeks to refine it.
+  </p>
+  
+  <br>
+  <h2 align="middle">Results</h2>
+  <div align="center">
+    <table>
+      <tr>
+        <td>
+          <img src="images/f1.png" style="display:block;margin-left:auto;margin-right:auto;width:100%;" />
+          <figcaption align="middle">character A with font 1</figcaption>
+        </td>
+        <td>
+          <img src="images/f2.png" style="display:block;margin-left:auto;margin-right:auto;width:100%;" />
+          <figcaption align="middle">character A with font 2</figcaption>
+        </td>
+      </tr>
+      <br>
+      <tr>
+        <img src="images/alphabet.png" style="display:block;margin-left:auto;margin-right:auto;width:100%;" />
+        <figcaption align="middle">default output with selected font</figcaption>
+      </tr>
+      <br>
+      <tr>
+        <img src="images/out1.png" style="display:block;margin-left:auto;margin-right:auto;width:100%;" />
+        <figcaption align="middle">customized content with selected font</figcaption>
+        <br>
+      </tr>
+    </table>
+  </div>
+  
+  <br>
+  <h2 align="middle">References</h2>
+    <p>
+      <ul>
+        <li>https://en.wikipedia.org/wiki/TrueType</li>
+        <li>https://developer.apple.com/fonts/TrueType-Reference-Manual/</li>
+        <li>https://github.com/justinmeiners/stb-truetype-example</li>
+        <li>https://formats.kaitai.io/ttf/index.html</li>
+        <li>https://fontforge.org/en-US/</li>
+      </ul>
+    </p>
+  
+</div>
+
+</body>
+</html>
